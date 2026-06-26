@@ -1,0 +1,15 @@
+# Секреты и приватные данные — НИКОГДА не коммитить
+config.yaml
+*.session
+*.session-journal
+downloads/
+progress.json
+*.log
+
+# Python / IDE
+.venv/
+venv/
+__pycache__/
+*.pyc
+.idea/
+.pytest_cache/

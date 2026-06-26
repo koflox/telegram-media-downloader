@@ -1,0 +1,3 @@
+# Зависимости для разработки и тестов (основные — в requirements.txt).
+-r requirements.txt
+pytest>=8.0

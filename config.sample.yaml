@@ -1,0 +1,43 @@
+telegram:
+  api_id: YOUR_APP_ID            # с https://my.telegram.org
+  api_hash: YOUR_API_HASH
+  session_name: YOUR_SESSION_NAME
+
+download:
+  output_dir: "./downloads"   # корневая папка; внутри по подпапке на чат
+
+  # Какие типы медиа выгружать (true/false):
+  photos: true                # обычные фото
+  videos: true                # обычные видео
+  video_notes: true           # видео-кружочки (round video)
+  file_photos: true           # фото, отправленные ФАЙЛОМ (документ image/*)
+  file_videos: true           # видео, отправленные ФАЙЛОМ (документ video/*)
+
+  # Не выгружать вложения больше N МБ (0 = без лимита). Удобно, чтобы не тянуть
+  # гигабайтные видео. Лимит проверяется до скачивания — большой файл просто пропускается.
+  max_file_mb: 0
+
+  # Необязательный фильтр по дате: НЕ выгружать сообщения старше этой даты.
+  # Формат "ГГГГ-ММ-ДД" или "ГГГГ-ММ-ДД ЧЧ:ММ" (локальное время). Пусто = вся история.
+  since_date:
+
+scope:
+  include_groups: true        # выгружать из групп/супергрупп
+  include_channels: false     # выгружать из каналов-вещаний
+  # Личные чаты выгружаются всегда. Список чатов-исключений (числовой id или @username):
+  exclude_chats: []
+
+throttle:
+  download_workers: 4          # сколько файлов качать ОДНОВРЕМЕННО (1 = по одному).
+                               # Больше = быстрее, но выше риск FloodWait. Разумно 4–8.
+  separate_connections: true   # true = каждому воркеру СВОЁ соединение к Telegram
+                               # (большой файл на одном воркере не тормозит остальных).
+                               # false = все воркеры через одно соединение (медленнее
+                               # на крупных файлах, зато меньше соединений к аккаунту).
+  pause_between_chats: 1.0     # пауза (сек) между чатами
+  pause_between_files: 0.0     # пауза (сек) после каждого скачанного файла
+  flood_buffer_seconds: 5      # запас сверх FloodWait перед повтором
+
+output:
+  log_path: "./downloader.log"
+  progress_path: "./progress.json"

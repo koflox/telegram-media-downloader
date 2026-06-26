@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./.venv/Scripts/python.exe -c \"import telethon, yaml; print\\('deps OK', telethon.__version__\\)\")",
+      "Bash(./.venv/Scripts/python.exe -m compileall -q tgmedia download.py)"
+    ]
+  }
+}
